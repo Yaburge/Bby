@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Us ♡</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Inter:wght@200;300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --cream: #faf0e6;
+            --pink: #ff6b9d;
+            --purple: #c084fc;
+            --blue: #67e8f9;
+            --warm: #fbbf24;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        html::-webkit-scrollbar { display: none; }
+
+        body {
+            background: var(--bg);
+            color: var(--cream);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            opacity: 0;
+            animation: floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% { opacity: 0; transform: translateY(100vh) rotate(0deg) scale(0); }
+            10% { opacity: 0.5; transform: translateY(85vh) rotate(20deg) scale(1); }
+            90% { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-10vh) rotate(360deg) scale(0.5); }
+        }
+
+        /* Grain */
+        .grain {
+            position: fixed;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.4;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.5);
+        }
+
+        .nav-logo {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: var(--pink);
+            font-weight: 700;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 107, 157, 0.3);
+            border: none;
+            transition: all 0.3s;
+            padding: 0;
+        }
+
+        .nav-dot.active {
+            background: var(--pink);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Heartbeat */
+        .heartbeat-line {
+            position: fixed;
+            bottom: max(20px, env(safe-area-inset-bottom));
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            opacity: 0.3;
+        }
+
+        .heartbeat-line svg { width: 140px; height: 30px; }
+
+        .heartbeat-path {
+            stroke: var(--pink);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: heartbeatDraw 3s ease-in-out infinite;
+        }
+
+        @keyframes heartbeatDraw {
+            0% { stroke-dashoffset: 400; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -400; }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .hero-bg-gradient {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.12;
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        .hero-bg-gradient.one {
+            background: var(--pink);
+            width: 250px; height: 250px;
+            top: -50px; right: -50px;
+        }
+
+        .hero-bg-gradient.two {
+            background: var(--purple);
+            width: 200px; height: 200px;
+            bottom: -50px; left: -50px;
+            animation-delay: 2s;
+        }
+
+        .hero-bg-gradient.three {
+            background: var(--blue);
+            width: 150px; height: 150px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 4s;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.4); opacity: 0.18; }
+        }
+
+        .hero-content { text-align: center; z-index: 2; }
+
+        .hero-emoji {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: floatIcon 4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+
+        .hero-micro {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--pink);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.3s;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: 'Caveat', cursive;
+            font-size: 58px;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.6s;
+            padding: 6px 28px;
+            overflow: visible;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 6px;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 200;
+            color: rgba(250, 240, 230, 0.35);
+            margin-top: 16px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1s;
+            letter-spacing: 2px;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.5s;
+        }
+
+        .scroll-hint span {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(250, 240, 230, 0.2);
+        }
+
+        .scroll-arrow {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--pink), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== COUNTER ===== */
+        .counter-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(250, 240, 230, 0.25);
+            margin-bottom: 32px;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
+            margin-bottom: 32px;
+        }
+
+        .counter-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 107, 157, 0.08);
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        .counter-box:active {
+            border-color: rgba(255, 107, 157, 0.3);
+        }
+
+        .counter-number {
+            font-size: 40px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .counter-unit {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(250, 240, 230, 0.25);
+            margin-top: 6px;
+        }
+
+        .counter-since {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: rgba(250, 240, 230, 0.3);
+        }
+
+        /* ===== MAP ===== */
+        .map-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 16px;
+            position: relative;
+        }
+
+        .map-title {
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: var(--cream);
+            margin-bottom: 8px;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        .map-title span { color: var(--pink); }
+
+        .map-route {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: rgba(250,240,230,0.2);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 4/5;
+            position: relative;
+        }
+
+        .map-svg { width: 100%; height: 100%; }
+
+        .flight-path {
+            stroke: url(#pathGrad);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 8 6;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 4px rgba(255, 107, 157, 0.3));
+        }
+
+        .flight-path-glow {
+            stroke: var(--pink);
+            stroke-width: 6;
+            fill: none;
+            opacity: 0.06;
+        }
+
+        .city-dot {
+            fill: var(--cream);
+            filter: drop-shadow(0 0 8px var(--pink));
+        }
+
+        .city-ring {
+            fill: none;
+            stroke: var(--pink);
+            stroke-width: 1;
+        }
+
+        .city-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            fill: var(--cream);
+            letter-spacing: 2px;
+        }
+
+        .city-sublabel {
+            font-family: 'Caveat', cursive;
+            font-size: 14px;
+            fill: var(--pink);
+            opacity: 0.6;
+        }
+
+        .dist-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            fill: rgba(250,240,230,0.2);
+            letter-spacing: 3px;
+        }
+
+        .dist-feel {
+            font-family: 'Caveat', cursive;
+            font-size: 13px;
+            fill: rgba(255,107,157,0.35);
+        }
+
+        /* Map info cards */
+        .map-info {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .map-info-card {
+            flex: 1;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,107,157,0.06);
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+        }
+
+        .map-info-value {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: var(--pink);
+        }
+
+        .map-info-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(250,240,230,0.2);
+            margin-top: 4px;
+        }
+
+        /* ===== REASONS ===== */
+        .reasons-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reasons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .reason-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 107, 157, 0.06);
+            border-radius: 18px;
+            padding: 24px 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(to bottom, var(--pink), var(--purple));
+            opacity: 0.4;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .reason-card:active {
+            border-color: rgba(255, 107, 157, 0.2);
+            transform: scale(0.98);
+        }
+
+        .reason-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            color: var(--pink);
+            letter-spacing: 3px;
+            opacity: 0.4;
+        }
+
+        .reason-text {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            margin-top: 8px;
+            line-height: 1.3;
+            color: var(--cream);
+            opacity: 0.85;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 340px;
+            width: 100%;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--pink), var(--purple), transparent);
+            opacity: 0.2;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 48px;
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateX(-15px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 10px; top: 3px;
+            width: 13px; height: 13px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--pink);
+            z-index: 2;
+        }
+
+        .timeline-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--pink);
+            opacity: 0.5;
+        }
+
+        .timeline-text {
+            font-family: 'Caveat', cursive;
+            font-size: 21px;
+            color: var(--cream);
+            margin-top: 6px;
+            opacity: 0.75;
+            line-height: 1.3;
+        }
+
+        /* ===== LETTER ===== */
+        .letter-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+        }
+
+        .letter-container {
+            width: 100%;
+            max-width: 380px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 107, 157, 0.06);
+            border-radius: 24px;
+            padding: 40px 28px;
+            position: relative;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+        }
+
+        .letter-stamp {
+            position: absolute;
+            top: 16px; right: 20px;
+            font-size: 8px;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 2px;
+            color: var(--pink);
+            opacity: 0.3;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 107, 157, 0.15);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .letter-greeting {
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: var(--pink);
+            margin-bottom: 20px;
+        }
+
+        .letter-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 200;
+            line-height: 2;
+            color: rgba(250, 240, 230, 0.5);
+        }
+
+        .letter-body .highlight {
+            color: var(--pink);
+            font-weight: 400;
+        }
+
+        .letter-sign {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: var(--pink);
+            margin-top: 32px;
+            text-align: right;
+        }
+
+        /* ===== PROMISE ===== */
+        .promise-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .promise-icon {
+            font-size: 40px;
+            margin-bottom: 24px;
+            animation: floatIcon 4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .promise-text {
+            font-family: 'Caveat', cursive;
+            font-size: 36px;
+            line-height: 1.3;
+            background: linear-gradient(135deg, var(--cream), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 300px;
+        }
+
+        .promise-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 200;
+            color: rgba(250, 240, 230, 0.2);
+            margin-top: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ===== MUSIC ===== */
+        .music-section {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .music-viz {
+            display: flex;
+            gap: 3px;
+            align-items: end;
+            height: 32px;
+            margin-bottom: 16px;
+        }
+
+        .music-bar {
+            width: 3px;
+            background: var(--pink);
+            border-radius: 2px;
+            animation: musicBounce 1.2s ease-in-out infinite;
+        }
+
+        @keyframes musicBounce {
+            0%, 100% { height: 6px; opacity: 0.3; }
+            50% { height: 28px; opacity: 0.7; }
+        }
+
+        .music-text {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: rgba(250, 240, 230, 0.3);
+        }
+
+        .music-song {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--pink);
+            margin-top: 6px;
+            opacity: 0.4;
+        }
+
+        /* ===== FINALE ===== */
+        .finale-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .finale-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .finale-text {
+            font-family: 'Caveat', cursive;
+            font-size: 52px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue), var(--warm));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite;
+            line-height: 1.2;
+            padding: 6px 28px;
+            display: inline-block;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .finale-heart {
+            font-size: 56px;
+            margin-top: 20px;
+            animation: bigHeartBeat 1.2s ease-in-out infinite;
+            display: inline-block;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        @keyframes bigHeartBeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+        }
+
+        .finale-coords {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: rgba(250, 240, 230, 0.1);
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        /* Touch hearts */
+        .touch-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: touchExplode 1s ease forwards;
+        }
+
+        @keyframes touchExplode {
+            0% { opacity: 1; transform: scale(0) translateY(0); }
+            40% { opacity: 1; transform: scale(1.3) translateY(-30px); }
+            100% { opacity: 0; transform: scale(0.6) translateY(-70px); }
+        }
+
+        /* Love message popup */
+        .love-msg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: var(--pink);
+            z-index: 10000;
+            pointer-events: none;
+            text-align: center;
+            white-space: nowrap;
+            animation: msgPop 1.8s ease forwards;
+        }
+
+        @keyframes msgPop {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            80% { opacity: 1; transform: translate(-50%, -60%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -70%) scale(0.9); }
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 20px calc(70px + env(safe-area-inset-bottom));
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            color: rgba(250,240,230,0.1);
+            letter-spacing: 3px;
+        }
+
+        /* Haptic button */
+        .tap-zone {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Swipe hint */
+        .swipe-cards {
+            width: 100%;
+            max-width: 380px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 12px;
+            padding: 0 20px 20px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .swipe-cards::-webkit-scrollbar { display: none; }
+
+        .swipe-card {
+            flex: 0 0 85%;
+            scroll-snap-align: center;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,107,157,0.06);
+            border-radius: 20px;
+            padding: 32px 24px;
+            position: relative;
+        }
+
+        .swipe-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,107,157,0.03), transparent);
+            border-radius: 20px;
+        }
+
+        .swipe-hint {
+            font-family: 'Inter', sans-serif;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(250,240,230,0.15);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .swipe-hint span {
+            display: inline-block;
+            animation: swipeArrow 2s ease-in-out infinite;
+        }
+
+        @keyframes swipeArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        /* ===== DAILY MOOD ===== */
+        .mood-section {
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mood-question {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: rgba(250,240,230,0.5);
+            margin-bottom: 24px;
+        }
+
+        .mood-emojis {
+            display: flex;
+            gap: 16px;
+        }
+
+        .mood-emoji {
+            font-size: 36px;
+            background: none;
+            border: 2px solid rgba(255,107,157,0.1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .mood-emoji:active, .mood-emoji.selected {
+            border-color: var(--pink);
+            transform: scale(1.15);
+            background: rgba(255,107,157,0.08);
+        }
+
+        .mood-response {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--pink);
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            text-align: center;
+            min-height: 30px;
+        }
+
+        .mood-response.show { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="grain"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">us ♡</div>
+        <div class="nav-dots" id="navDots">
+            <button class="nav-dot active" data-section="0"></button>
+            <button class="nav-dot" data-section="1"></button>
+            <button class="nav-dot" data-section="2"></button>
+            <button class="nav-dot" data-section="3"></button>
+            <button class="nav-dot" data-section="4"></button>
+        </div>
+    </nav>
+
+    <!-- HEARTBEAT -->
+    <div class="heartbeat-line">
+        <svg viewBox="0 0 200 40">
+            <path class="heartbeat-path" d="M0,20 L40,20 L50,20 L55,5 L60,35 L65,10 L70,25 L75,20 L120,20 L130,20 L135,5 L140,35 L145,10 L150,25 L155,20 L200,20"/>
+        </svg>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="sec0">
+        <div class="hero-bg-gradient one"></div>
+        <div class="hero-bg-gradient two"></div>
+        <div class="hero-bg-gradient three"></div>
+        <div class="hero-content">
+            <div class="hero-emoji">🫶</div>
+            <p class="hero-micro">across the ocean</p>
+            <h1 class="hero-title"><span>you & me</span></h1>
+            <p class="hero-subtitle">5,816 km apart · zero distance in heart</p>
+        </div>
+        <div class="scroll-hint">
+            <span>scroll down</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ===== COUNTER ===== -->
+    <section class="counter-section reveal" id="sec1">
+        <p class="section-label">every second counts</p>
+        <div class="counter-grid">
+            <div class="counter-box tap-zone">
+                <div class="counter-number" id="days">000</div>
+                <div class="counter-unit">days</div>
+            </div>
+            <div class="counter-box tap-zone">
+                <div class="counter-number" id="hours">00</div>
+                <div class="counter-unit">hours</div>
+            </div>
+            <div class="counter-box tap-zone">
+                <div class="counter-number" id="minutes">00</div>
+                <div class="counter-unit">mins</div>
+            </div>
+            <div class="counter-box tap-zone">
+                <div class="counter-number" id="seconds">00</div>
+                <div class="counter-unit">secs</div>
+            </div>
+        </div>
+        <p class="counter-since">since we became us ♡</p>
+    </section>
+
+    <!-- ===== MAP ===== -->
+    <section class="map-section reveal" id="sec2">
+        <p class="section-label">the distance between</p>
+        <p class="map-title">Tacloban 🇵🇭 <span>→</span> Melbourne 🇦🇺</p>
+        <p class="map-route">PH · VISAYAS → AU · VICTORIA</p>
+
+        <div class="map-container">
+            <svg class="map-svg" viewBox="0 0 400 500">
+                <defs>
+                    <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ff6b9d"/>
+                        <stop offset="50%" style="stop-color:#c084fc"/>
+                        <stop offset="100%" style="stop-color:#67e8f9"/>
+                    </linearGradient>
+                    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                        <circle cx="15" cy="15" r="0.5" fill="rgba(250,240,230,0.08)"/>
+                    </pattern>
+                </defs>
+
+                <rect width="400" height="500" fill="url(#dots)"/>
+
+                <!-- Philippines region -->
+                <ellipse cx="200" cy="100" rx="30" ry="45" fill="rgba(255,107,157,0.04)" stroke="rgba(255,107,157,0.08)" stroke-width="0.5"/>
+
+                <!-- Australia region -->
+                <ellipse cx="200" cy="400" rx="70" ry="45" fill="rgba(103,232,249,0.04)" stroke="rgba(103,232,249,0.08)" stroke-width="0.5"/>
+
+                <!-- Path glow -->
+                <path class="flight-path-glow" d="M200,100 Q320,180 280,250 Q240,320 200,400" id="fPath"/>
+
+                <!-- Path dashed -->
+                <path class="flight-path" d="M200,100 Q320,180 280,250 Q240,320 200,400">
+                    <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="2s" repeatCount="indefinite"/>
+                </path>
+
+                <!-- Plane -->
+                <text font-size="16">
+                    <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+                        <mpath href="#fPath"/>
+                    </animateMotion>
+                    ✈️
+                </text>
+
+                <!-- Heart midpoint -->
+                <text x="290" y="250" text-anchor="middle" font-size="18">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+                    💗
+                </text>
+
+                <!-- Tacloban -->
+                <circle cx="200" cy="100" r="5" class="city-dot"/>
+                <circle cx="200" cy="100" fill="none" stroke="#ff6b9d" stroke-width="1">
+                    <animate attributeName="r" values="6;22" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.4;0" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="200" cy="100" fill="none" stroke="#ff6b9d" stroke-width="1">
+                    <animate attributeName="r" values="6;22" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.4;0" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
+                </circle>
+                <text x="200" y="72" text-anchor="middle" class="city-label">TACLOBAN</text>
+                <text x="200" y="135" text-anchor="middle" class="city-sublabel">I'm here ♡</text>
+
+                <!-- Melbourne -->
+                <circle cx="200" cy="400" r="5" class="city-dot"/>
+                <circle cx="200" cy="400" fill="none" stroke="#67e8f9" stroke-width="1">
+                    <animate attributeName="r" values="6;22" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.4;0" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="200" cy="400" fill="none" stroke="#67e8f9" stroke-width="1">
+                    <animate attributeName="r" values="6;22" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.4;0" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
+                </circle>
+                <text x="200" y="372" text-anchor="middle" class="city-label">MELBOURNE</text>
+                <text x="200" y="435" text-anchor="middle" class="city-sublabel">You're here ♡</text>
+
+                <!-- Distance -->
+                <text x="130" y="255" text-anchor="middle" class="dist-label">5,816 KM</text>
+                <text x="130" y="272" text-anchor="middle" class="dist-feel">pamarasahe by hehe magin 0 km ito HAHAHAHA</text>
+
+            </svg>
+        </div>
+
+        <div class="map-info">
+            <div class="map-info-card">
+                <div class="map-info-value">5,816 km</div>
+                <div class="map-info-label">distance</div>
+            </div>
+            <div class="map-info-card">
+                <div class="map-info-value">~8.5 hrs</div>
+                <div class="map-info-label">flight</div>
+            </div>
+            <div class="map-info-card">
+                <div class="map-info-value">+3 hrs</div>
+                <div class="map-info-label">time diff</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MOOD ===== -->
+    <section class="mood-section reveal">
+        <p class="section-label">tap how you feel rn</p>
+        <p class="mood-question">how much do you miss me?</p>
+        <div class="mood-emojis">
+            <button class="mood-emoji tap-zone" data-mood="a lot">🥺</button>
+            <button class="mood-emoji tap-zone" data-mood="so much it hurts">😭</button>
+            <button class="mood-emoji tap-zone" data-mood="come here NOW">🫠</button>
+            <button class="mood-emoji tap-zone" data-mood="every second">💀</button>
+        </div>
+        <div class="mood-response" id="moodResponse"></div>
+    </section>
+
+    <!-- ===== REASONS (SWIPEABLE) ===== -->
+    <section class="reasons-section reveal" id="sec3">
+        <p class="section-label" style="margin-bottom:16px;">why you · always you</p>
+        <p class="swipe-hint">swipe <span>→</span></p>
+        <div class="swipe-cards">
+            <div class="swipe-card">
+                <span class="reason-number">01</span>
+                <p class="reason-text">Your tiktoks makes 5,816 km feel like nothing</p>
+            </div>
+            <div class="swipe-card">
+                <span class="reason-number">02</span>
+                <p class="reason-text">Lagas ka kaysa haak</p>
+            </div>
+            <div class="swipe-card">
+                <span class="reason-number">03</span>
+                <p class="reason-text">Your "good morning" is my favorite notification</p>
+            </div>
+            <div class="swipe-card">
+                <span class="reason-number">04</span>
+                <p class="reason-text">Tanga ka mag bike</p>
+            </div>
+            <div class="swipe-card">
+                <span class="reason-number">05</span>
+                <p class="reason-text">Next time na it iba waray naak maisip</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TIMELINE ===== -->
+    <section class="timeline-section reveal">
+        <p class="section-label">our little milestones</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">grade 9 · the first time</span>
+                <p class="timeline-text">We were young, we were soft, we were ours. The very first version of us.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">grade 10 · the goodbye</span>
+                <p class="timeline-text">It ended. But some things don't really end they just wait.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">6 years · living apart</span>
+                <p class="timeline-text">Different paths. Different lives. But somehow, always finding a way back to each other's mind.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">2025 · the kiss</span>
+                <p class="timeline-text">When you kissed me obsessed ka kasi didto ko nasabtan na this was more than just talking. This was something real, something new, something forever.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">december 26, 2025 ♡</span>
+                <p class="timeline-text">Official. Again. But this time, nothing's letting go. This time, it's for keeps. 3 years waray na love? malalagas kanala pag inihap love ko la gihap ikaw</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">someday soon ✈️</span>
+                <p class="timeline-text">Airport arrivals. Real hugs and kisses</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== LETTER ===== -->
+    <section class="letter-section reveal" id="sec4">
+        <div class="letter-container">
+            <span class="letter-stamp">tac → melb</span>
+            <p class="letter-greeting">Hey, Bby ♡</p>
+            <p class="letter-body">
+                I miss you labi na tim irong. Like <span class="highlight">always</span>. Namimiss ko an ikaw na aadi tak sapit
+                <br><br>
+                You make every second of waiting worth it.
+                Every "goodnight". Every "good morning" at the wrong hour.
+                Every <span class="highlight">"Teleport na didi."</span>
+                <br><br>
+                Thank you na gin upod mo ak haiyo house bisan diri ak invited HAHAHAHAHA nakaupod ko pa ikaw bisan pera la ka hours worth it an akon pag absent, namimiss ko adto na adlaw na upod ko ikaw nadiri ak matapos adto gin pauli mo kasi ak dayon maligis kanala tram 😔.
+                <br><br>
+                Amo la nim gin bilin na memories haak lalamot ka kasi, but this is just the beginning. Pag nakauli kana we'll make a thousand more memories <span class="highlight">together.</span>
+                <br><br>
+                Thank you by for being there, nagkamayada nanaman purpose tak life.
+                <br><br>
+                 <span class="highlight">Wait for me. Or I'll wait for you. Either way we end up together.</span>
+            </p>
+            <p class="letter-sign">Forever yours ♡</p>
+        </div>
+    </section>
+
+    <!-- ===== PROMISE ===== -->
+    <section class="promise-section reveal">
+        <div class="promise-icon">✈️</div>
+        <p class="promise-text">One day, no more screens between us.</p>
+        <p class="promise-sub">that's not a wish — it's a promise</p>
+    </section>
+
+    <!-- ===== FINALE ===== -->
+    <section class="finale-section reveal">
+        <div class="finale-orb" style="background:var(--pink);width:200px;height:200px;top:20%;left:10%"></div>
+        <div class="finale-orb" style="background:var(--purple);width:150px;height:150px;bottom:20%;right:10%"></div>
+
+        <h2 class="finale-text">I love you</h2>
+        <div class="finale-heart tap-zone" id="bigHeart">♡</div>
+        <p class="finale-coords">
+            11.23°N 125.03°E — 37.67°S 144.84°E
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        made with all of my heart · for you, always
+    </div>
+
+    <script>
+        // ===== FLOATING HEARTS =====
+        const heartsContainer = document.getElementById('floatingHearts');
+        const heartEmojis = ['♡', '💕', '💗', '✨', '🤍', '💜'];
+
+        function createHeart() {
+            const h = document.createElement('div');
+            h.className = 'floating-heart';
+            h.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            h.style.left = Math.random() * 100 + '%';
+            h.style.animationDuration = (18 + Math.random() * 15) + 's';
+            h.style.animationDelay = Math.random() * 3 + 's';
+            h.style.fontSize = (10 + Math.random() * 12) + 'px';
+            heartsContainer.appendChild(h);
+            setTimeout(() => h.remove(), 35000);
+        }
+
+        for (let i = 0; i < 6; i++) setTimeout(createHeart, i * 2500);
+        setInterval(createHeart, 5000);
+
+        // ===== COUNTER =====
+        const startDate = new Date('2025-12-26T00:00:00');
+
+        function updateCounter() {
+            const diff = Date.now() - startDate;
+            const d = Math.floor(diff / 864e5);
+            const h = Math.floor((diff % 864e5) / 36e5);
+            const m = Math.floor((diff % 36e5) / 6e4);
+            const s = Math.floor((diff % 6e4) / 1e3);
+
+            document.getElementById('days').textContent = String(d).padStart(3, '0');
+            document.getElementById('hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+        }
+        updateCounter();
+        setInterval(updateCounter, 1000);
+
+        // ===== SCROLL REVEAL =====
+        const revealEls = document.querySelectorAll('.reveal');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.12 });
+
+        revealEls.forEach(el => obs.observe(el));
+        timelineItems.forEach(el => obs.observe(el));
+
+        // ===== NAV DOTS =====
+        const sections = document.querySelectorAll('[id^="sec"]');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        const secObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const idx = e.target.id.replace('sec', '');
+                    dots.forEach((d, i) => {
+                        d.classList.toggle('active', i === parseInt(idx));
+                    });
+                }
+            });
+        }, { threshold: 0.4 });
+
+        sections.forEach(s => secObs.observe(s));
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const idx = dot.dataset.section;
+                document.getElementById('sec' + idx)?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // ===== TOUCH HEARTS =====
+        document.addEventListener('touchstart', (e) => {
+            const t = e.touches[0];
+            spawnHearts(t.clientX, t.clientY, 4);
+        }, { passive: true });
+
+        document.addEventListener('click', (e) => {
+            spawnHearts(e.clientX, e.clientY, 4);
+        });
+
+        function spawnHearts(x, y, count) {
+            const emojis = ['♡', '❤️', '💕', '💗', '💜'];
+            for (let i = 0; i < count; i++) {
+                const h = document.createElement('div');
+                h.className = 'touch-heart';
+                h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                h.style.left = x + (Math.random() - 0.5) * 50 + 'px';
+                h.style.top = y + (Math.random() - 0.5) * 50 + 'px';
+                h.style.fontSize = (16 + Math.random() * 14) + 'px';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 1000);
+            }
+        }
+
+        // ===== BIG HEART TAP =====
+        const bigHeart = document.getElementById('bigHeart');
+        let tapCount = 0;
+        const msgs = [
+            'I love you ♡',
+            'to the moon & back 🌙',
+            'always & forever',
+            'you\'re my everything',
+            'wait for me ✈️',
+            'I\'ll hold you soon',
+            'my heart is yours',
+            'you\'re worth every wait',
+            'Tacloban → Melbourne ♡',
+            'soon. no more distance.',
+            'you\'re my favorite human',
+            'I choose you. every day.'
+        ];
+
+        bigHeart.addEventListener('click', (e) => {
+            e.stopPropagation();
+            tapCount++;
+
+            // Vibrate if supported
+            if (navigator.vibrate) navigator.vibrate(50);
+
+            // Show message
+            const msg = document.createElement('div');
+            msg.className = 'love-msg';
+            msg.textContent = msgs[tapCount % msgs.length];
+            document.body.appendChild(msg);
+            setTimeout(() => msg.remove(), 1800);
+
+            // Circle explosion
+            const rect = bigHeart.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            for (let i = 0; i < 10; i++) {
+                const angle = (Math.PI * 2 / 10) * i;
+                const h = document.createElement('div');
+                h.className = 'touch-heart';
+                h.textContent = '♡';
+                h.style.left = cx + Math.cos(angle) * 60 + 'px';
+                h.style.top = cy + Math.sin(angle) * 60 + 'px';
+                h.style.fontSize = '18px';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 1000);
+            }
+        });
+
+        // ===== MOOD SELECTOR =====
+        const moodBtns = document.querySelectorAll('.mood-emoji');
+        const moodResp = document.getElementById('moodResponse');
+        const moodMsgs = {
+            'a lot': 'I miss you more, I promise 🥺♡',
+            'so much it hurts': 'soon baby, soon... I\'m coming parasahe ko? hehe ♡',
+            'come here NOW': 'packing my bags rn ✈️♡',
+            'every second': 'over na ito'
+        };
+
+        moodBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (navigator.vibrate) navigator.vibrate(30);
+                moodBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                moodResp.textContent = moodMsgs[btn.dataset.mood];
+                moodResp.classList.add('show');
+            });
+        });
+
+        // ===== DOUBLE TAP EASTER EGG =====
+        let lastTap = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTap < 300) {
+                // Double tap — rain hearts!
+                for (let i = 0; i < 25; i++) {
+                    setTimeout(() => {
+                        const h = document.createElement('div');
+                        h.className = 'floating-heart';
+                        h.textContent = '❤️';
+                        h.style.left = Math.random() * 100 + '%';
+                        h.style.animationDuration = '3.5s';
+                        h.style.fontSize = (14 + Math.random() * 18) + 'px';
+                        h.style.animationDelay = '0s';
+                        heartsContainer.appendChild(h);
+                        setTimeout(() => h.remove(), 3500);
+                    }, i * 60);
+                }
+            }
+            lastTap = now;
+        }, { passive: true });
+
+        // ===== SMOOTH LOAD =====
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.6s ease';
+            requestAnimationFrame(() => {
+                document.body.style.opacity = '1';
+            });
+        });
+    </script>
+
+</body>
+</html>
